@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/onboard1_screen.dart';
+import 'package:travel_app/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Onboard1Screen(),),
+        MaterialPageRoute(builder: (context) => OnboardingScreen(),),
       );
     });
   }
