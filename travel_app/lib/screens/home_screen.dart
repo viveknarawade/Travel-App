@@ -75,7 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Spacer(),
-         NavBarWidget(),
+       
+          NavBarWidget.showCustomAppbar(context,currentIndex: 0)
           ],
         ),
       ),

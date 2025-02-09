@@ -28,76 +28,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: Image.asset(
-                "assets/avatar1.png",
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              "Vivek",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            Text(
-              "Leonardo@gmail.com",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _buildProfileItem("Reward Points", "10"),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Image.asset(
+                    "assets/avatar1.png",
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
                   ),
-                  Expanded(
-                    child: _buildProfileItem("Travel Trips", "100"),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  "Vivek",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Expanded(
-                    child: _buildProfileItem("Bucket List", "200"),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  "Leonardo@gmail.com",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _buildProfileItem("Reward Points", "10"),
+                      ),
+                      Expanded(
+                        child: _buildProfileItem("Travel Trips", "100"),
+                      ),
+                      Expanded(
+                        child: _buildProfileItem("Bucket List", "200"),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                _buildProfileListTile(
+                    Icons.bookmark_add_outlined, "Bookmarked"),
+                _buildProfileListTile(Icons.location_on, "Address"),
+                _buildProfileListTile(Icons.settings, "Settings"),
+                _buildProfileListTile(Icons.verified_sharp, "Version"),
+                Spacer(),
+              ],
             ),
-            SizedBox(
-              height: 25,
-            ),
-            _buildProfileListTile(Icons.bookmark_add_outlined, "Bookmarked"),
-            _buildProfileListTile(Icons.location_on, "Address"),
-            _buildProfileListTile(Icons.settings, "Settings"),
-            _buildProfileListTile(Icons.verified_sharp, "Version"),
-          
-           NavBarWidget(),
-          ],
-        ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: NavBarWidget.showCustomAppbar(context, currentIndex: 4),
+          ),
+        ],
       ),
     );
   }

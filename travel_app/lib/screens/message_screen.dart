@@ -51,7 +51,8 @@ class _MessageScreenState extends State<MessageScreen> {
               return _buildCard(index + 1);
             },
           ),
-           NavBarWidget(),
+        Spacer(),
+          NavBarWidget.showCustomAppbar(context,currentIndex: 3)
         ],
       ),
 
@@ -60,7 +61,7 @@ class _MessageScreenState extends State<MessageScreen> {
 
   _buildCard(int i) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(

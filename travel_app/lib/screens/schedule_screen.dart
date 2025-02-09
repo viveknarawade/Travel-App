@@ -65,87 +65,92 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 7),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                children: [
-                  Row(
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 7),
+            child: Column(
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
                     children: [
-                      Text(
-                        DateFormat("dd MMMM").format(_selectedDate),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
                       Row(
                         children: [
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back_ios, size: 19),
-                            onPressed: _subtractMonth,
+                          Text(
+                            DateFormat("dd MMMM").format(_selectedDate),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          const SizedBox(width: 11),
-                          IconButton(
-                            icon: const Icon(Icons.arrow_forward_ios, size: 19),
-                            onPressed: _addMonth,
+                          const Spacer(),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon:
+                                    const Icon(Icons.arrow_back_ios, size: 19),
+                                onPressed: _subtractMonth,
+                              ),
+                              const SizedBox(width: 11),
+                              IconButton(
+                                icon: const Icon(Icons.arrow_forward_ios,
+                                    size: 19),
+                                onPressed: _addMonth,
+                              ),
+                            ],
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      EasyDateTimeLine(
+                        initialDate: _selectedDate,
+                        onDateChange: (DateTime obj) {
+                          setState(() {
+                            _selectedDate = obj;
+                          });
+                        },
+                        headerProps: const EasyHeaderProps(
+                          showHeader: false,
+                          monthPickerType: MonthPickerType.switcher,
+                          dateFormatter: DateFormatter.fullDateDMY(),
+                        ),
+                        dayProps: const EasyDayProps(
+                          dayStructure: DayStructure.dayStrDayNum,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildRow(),
+                for (int i = 0; i < 4; i++)
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: _buildCard(),
                   ),
-                  EasyDateTimeLine(
-                    initialDate: _selectedDate,
-                    onDateChange: (DateTime obj) {
-                      setState(() {
-                        _selectedDate = obj;
-                      });
-                    },
-                    headerProps: const EasyHeaderProps(
-                      showHeader: false,
-                      monthPickerType: MonthPickerType.switcher,
-                      dateFormatter: DateFormatter.fullDateDMY(),
-                    ),
-                    dayProps: const EasyDayProps(
-                      dayStructure: DayStructure.dayStrDayNum,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
+
+              ],
             ),
-            SizedBox(
-              height: 20,
-            ),
-            _buildRow(),
-            for (int i = 0; i < 4; i++)
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: _buildCard(),
-              ),
-
-
-
-          NavBarWidget(),
-          ],
-        ),
-    
+          ),
+          Positioned(
+            bottom: 0,
+            child: NavBarWidget.showCustomAppbar(context, currentIndex: 1),
+          ),
+        ],
       ),
-
-
     );
   }
 
@@ -176,7 +181,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   _buildCard() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
